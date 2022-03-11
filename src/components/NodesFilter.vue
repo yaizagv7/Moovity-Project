@@ -7,13 +7,13 @@
             <span>{{ $t('fraction.no_tags') }}</span>
         </div> FIXME -->
         <div :class="['map_filter ico_plastic', {filter_active: filter.plastic}]" @click="filter.invert('plastic')">
-            <span>{{ $t('fraction.plastic') }}</span>
+            <span>{{ $t('Mercerías') }}</span>
         </div>
         <div :class="['map_filter ico_plastic_bottles', {filter_active: filter.plastic_bottles}]" @click="filter.invert('plastic_bottles')">
-            <span>{{ $t('fraction.plastic_bottles') }}</span>
+            <span>{{ $t('Fruterías') }}</span>
         </div>
         <div :class="['map_filter ico_glass_bottles', {filter_active: filter.glass_bottles}]" @click="filter.invert('glass_bottles')">
-            <span>{{ $t('fraction.glass_bottles') }}</span>
+            <span>{{ $t('Tiendas de regalos') }}</span>
         </div>
         <div :class="['map_filter ico_glass', {filter_active: filter.glass}]" @click="filter.invert('glass')">
             <span>{{ $t('fraction.glass') }}</span>

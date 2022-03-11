@@ -60,7 +60,7 @@
                 layer: null,
                 filter: new Filter(),
                 labels: {
-                    plastic: this.$t('fraction.plastic'),
+                    plastic: this.$t('fraction.shops'),
                     paper: this.$t('fraction.paper'),
                     cans: this.$t('fraction.cans'),
                     glass: this.$t('fraction.glass'),

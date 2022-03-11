@@ -18,9 +18,9 @@
             <div class="tags_box" v-if="!waste_disposal">
                 <div class="node_tags">
                     <div class="box_title">{{ $t('message.selected') }}</div>
-                    <span
+                    <span v-bind:key="key"
                         v-for="(value, key) in recycling"
-                        v-if="value"
+                        
                         :class="['p_fraction', 'ico_'+key]"
                         @click="recycling[key] = !recycling[key]"
                     >{{ labels[key] }}</span>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="f_list f_list_add">
                     <div class="box_title">{{ $t('message.available') }}</div>
-                    <span v-for="(value, key) in recycling" v-if="!value"
+                    <span v-bind:key="key" v-for="(value, key) in recycling" 
                           :class="['p_fraction', 'ico_'+key]" @click="recycling[key] = !recycling[key]">{{ labels[key] }}</span>
                 </div>
             </div>
