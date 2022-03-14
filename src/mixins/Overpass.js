@@ -46,8 +46,8 @@ export default {
             let bbox = this.bboxFromCenter(center);
             let query = new OverpassQuery();
             let tags = [
-                {k: 'amenity', v: 'recycling'},
-                {k: 'amenity', v: 'waste_disposal'}
+                {k: 'shop'},
+                {k: 'shop'}
             ];
             return query.nodeByTags(tags, bbox).body;
         },

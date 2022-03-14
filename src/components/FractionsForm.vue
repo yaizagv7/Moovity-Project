@@ -5,9 +5,9 @@
             <div class="node_type">
                 <div class="box_title">{{ $t('message.selectType') }}</div>
                 <div class="node_type_choice">
-                    <div @click="waste_disposal = true;type_btn = 'waste'" :class="['type_btn type_waste', { type_active: type_btn === 'waste' }]" >{{ $t('message.wasteDisposal') }}</div>
-                    <div @click="waste_disposal = false;type_btn = 'recycle'" :class="['type_btn type_recycle', {type_active: type_btn === 'recycle'}]" >{{ $t('message.recyclingContainer') }}</div>
-                    <div @click="waste_disposal = false;type_btn = 'org'" :class="['type_btn type_org', {type_active: type_btn === 'org'}]" >{{ $t('message.recyclingOrganization') }}</div>
+                    <div @click="shop = true;type_btn = 'waste'" :class="['type_btn type_waste', { type_active: type_btn === 'waste' }]" >{{ $t('message.wasteDisposal') }}</div>
+                    <div @click="shop = false;type_btn = 'recycle'" :class="['type_btn type_recycle', {type_active: type_btn === 'recycle'}]" >{{ $t('message.shopsContainer') }}</div>
+                    <div @click="shop = false;type_btn = 'org'" :class="['type_btn type_org', {type_active: type_btn === 'org'}]" >{{ $t('message.shopsOrganization') }}</div>
                 </div>
             </div>
 
@@ -15,25 +15,25 @@
                 <div class="box_title">{{ $t('message.organizationName') }}</div>
                 <v-text-field :label="$t('message.organizationName')" solo v-model="name"></v-text-field>
             </div>
-            <div class="tags_box" v-if="!waste_disposal">
+            <div class="tags_box" v-if="!shop">
                 <div class="node_tags">
                     <div class="box_title">{{ $t('message.selected') }}</div>
                     <span v-bind:key="key"
-                        v-for="(value, key) in recycling"
+                        v-for="(value, key) in shops"
                         
                         :class="['p_fraction', 'ico_'+key]"
-                        @click="recycling[key] = !recycling[key]"
+                        @click="shops[key] = !shops[key]"
                     >{{ labels[key] }}</span>
 
-                    <div v-if="!isRecycling" class="tags_not_selected">{{ $t('message.selectFractions') }}</div>
+                    <div v-if="!isshops" class="tags_not_selected">{{ $t('message.selectFractions') }}</div>
                 </div>
                 <div class="f_list f_list_add">
                     <div class="box_title">{{ $t('message.available') }}</div>
-                    <span v-bind:key="key" v-for="(value, key) in recycling" 
-                          :class="['p_fraction', 'ico_'+key]" @click="recycling[key] = !recycling[key]">{{ labels[key] }}</span>
+                    <span v-bind:key="key" v-for="(value, key) in shops" 
+                          :class="['p_fraction', 'ico_'+key]" @click="shops[key] = !shops[key]">{{ labels[key] }}</span>
                 </div>
             </div>
-            <div v-if="!waste_disposal" class="description_box">
+            <div v-if="!shop" class="description_box">
                 <div class="box_title">{{ $t('message.description') }}</div>
                 <!-- <v-textarea :label="$t('message.description')" rows="2" solo v-model="description"></v-textarea> -->
                 <div class="tarea_p">
@@ -59,30 +59,30 @@
                 name: '',
                 type_btn: 'waste',
                 description: '',
-                waste_disposal: true,
-                recycling: {
-                    plastic: false,
-                    paper: false,
-                    cans: false,
-                    glass: false,
-                    glass_bottles: false,
-                    plastic_bags: false,
-                    clothes: false,
-                    batteries: false,
-                    low_energy_bulbs: false,
-                    plastic_bottles: false,
-                    hazardous_waste: false,
-                    scrap_metal: false,
-                    engine_oil: false,
-                    car_batteries: false,
-                    tyres: false,
+                shop: true,
+                shops: {
+                    shoes: false,
+                    books: false,
+                    curtain: false,
+                    copyshop: false,
+                    florist: false,
+                    interior_decoration: false,
+                    laundry: false,
+                    bakery: false,
+                    shoe_repair: false,
+                    comics: false,
+                    convenience: false,
+                    computer: false,
+                    hairdresser: false,
+                    electronics: false,
+                    furniture: false,
                 }
             }
         },
         computed: {
-            isRecycling: function () {
-                for (let key in this.recycling) {
-                    if(this.recycling.hasOwnProperty(key) && this.recycling[key]) {
+            isshops: function () {
+                for (let key in this.shops) {
+                    if(this.shops.hasOwnProperty(key) && this.shops[key]) {
                         return true;
                     }
                 }
@@ -90,40 +90,40 @@
             }
         },
         methods: {
-            clearRecycling: function () {
-                for (let key in this.recycling) {
-                    this.recycling[key] = false;
+            clearshops: function () {
+                for (let key in this.shops) {
+                    this.shops[key] = false;
                 }
             },
             initData: function () {
                 this.description = null;
-                this.waste_disposal = false;
-                this.clearRecycling();
+                this.shop = false;
+                this.clearshops();
             },
             hasData: function () {
-                return this.isRecycling || this.waste_disposal;
+                return this.isshops || this.shop;
             },
             buildTags: function () {
                 let tags = {
-                    amenity: this.waste_disposal ? 'waste_disposal' : 'recycling'
+                    amenity: this.shop ? 'shop' : 'shops'
                 };
                 if (this.description) {
                     tags.description = this.description;
                 }
-                if (!this.waste_disposal) {
-                    for (let key in this.recycling) {
-                        if(this.recycling.hasOwnProperty(key) && this.recycling[key]) {
-                            tags['recycling:'+key] = 'yes';
+                if (!this.shop) {
+                    for (let key in this.shops) {
+                        if(this.shops.hasOwnProperty(key) && this.shops[key]) {
+                            tags['shops:'+key] = 'yes';
                         }
                     }
                     if (this.type_btn === 'org') {
-                        tags['recycling_type'] = 'centre';
+                        tags['shops_type'] = 'centre';
                         if (this.name) {
                             tags['name'] = this.name;
                         }
                     }
                     else {
-                        tags['recycling_type'] = 'container';
+                        tags['shops_type'] = 'container';
                     }
                 }
                 return tags;
@@ -147,15 +147,15 @@
         created() {
             if(this.selected) {
                 let geoJsonProps = this.selected.props;
-                let centre = geoJsonProps.hasOwnProperty('recycling_type') && geoJsonProps.recycling_type === 'centre';
+                let centre = geoJsonProps.hasOwnProperty('shops_type') && geoJsonProps.shops_type === 'centre';
                 this.description = geoJsonProps.description;
                 this.name = geoJsonProps.name;
-                this.waste_disposal = geoJsonProps.amenity === 'waste_disposal';
-                this.type_btn = this.waste_disposal
+                this.shop = geoJsonProps.amenity === 'shop';
+                this.type_btn = this.shop
                     ? 'waste'
                     : (centre ? 'org' : 'recycle');
-                if(!this.waste_disposal) {
-                    this.selected.fractions.forEach((item) => this.recycling[item] = true);
+                if(!this.shop) {
+                    this.selected.fractions.forEach((item) => this.shops[item] = true);
                 }
                 this.node_type = this.selected.node_type;
                 this.node_id = this.selected.node_id;

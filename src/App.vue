@@ -3,7 +3,8 @@
         <v-content>
             <router-view></router-view>
         </v-content>
-        <v-bottom-nav color="primary" :value="true" fixed dark>
+        <!--BARRA DE NAVEGACION FOOTER
+            <v-bottom-nav color="primary" :value="true" fixed dark>
             <v-btn :to="{path: '/map'}" dark>
                 <span>{{ $t('menu.map') }}</span>
                 <v-icon>map</v-icon>
@@ -20,17 +21,17 @@
                 <span>{{ $t('menu.add') }}</span>
                 <v-icon>add_circle</v-icon>
             </v-btn>
-        </v-bottom-nav> 
+        </v-bottom-nav> -->
     </v-app>
 </template>
 
 <script>
-    import moment from 'moment'
+    /*import moment from 'moment'*/
 
     export default {
         data: function () {
             return {
-                title: 'OpenRecycleMap'
+                title: 'MoovityMap'
             }
         },
         methods: {

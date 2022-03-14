@@ -11,8 +11,9 @@
         <v-progress-circular indeterminate color="primary" v-if="loading" class="main_loading"></v-progress-circular>
 
         <div class="orm_logo orm_logo_map"></div>
+        <!--MOVER EL MAPA-->
         <leaflet-map v-on:map-init="initMap" v-on:location-found="onMapChange" v-on:map-click="onMapClick" v-on:map-change="onMapChange"></leaflet-map>
-
+        <!---->
         <fractions-form :selected="selected" :labels="labels" v-if="edit_tags" v-on:form-cancel="disableAddMode" v-on:form-save="saveData"></fractions-form>
 
         <node-info :key="selectedId" :selected="selected" :labels="labels" v-if="selectedLayer"
@@ -60,21 +61,21 @@
                 layer: null,
                 filter: new Filter(),
                 labels: {
-                    plastic: this.$t('fraction.shops'),
-                    paper: this.$t('fraction.paper'),
-                    cans: this.$t('fraction.cans'),
-                    glass: this.$t('fraction.glass'),
-                    glass_bottles: this.$t('fraction.glass_bottles'),
-                    batteries: this.$t('fraction.batteries'),
-                    plastic_bottles: this.$t('fraction.plastic_bottles'),
-                    hazardous_waste: this.$t('fraction.hazardous_waste'),
-                    engine_oil: this.$t('fraction.engine_oil'),
-                    clothes: this.$t('fraction.clothes'),
-                    low_energy_bulbs: this.$t('fraction.low_energy_bulbs'),
-                    plastic_bags: this.$t('fraction.plastic_bags'),
-                    scrap_metal: this.$t('fraction.scrap_metal'),
-                    car_batteries: this.$t('fraction.car_batteries'),
-                    tyres: this.$t('fraction.tyres'),
+                    shoes: this.$t('fraction.shoes'),
+                    books: this.$t('fraction.books'),
+                    curtain: this.$t('fraction.curtain'),
+                    copyshop: this.$t('fraction.copyshop'),
+                    florist: this.$t('fraction.florist'),
+                    interior_decoration: this.$t('fraction.interior_decoration'),
+                    laundry: this.$t('fraction.laundry'),
+                    bakery: this.$t('fraction.bakery'),
+                    shoe_repair: this.$t('fraction.shoe_repair'),
+                    comics: this.$t('fraction.comics'),
+                    convenience: this.$t('fraction.convenience'),
+                    computer: this.$t('fraction.computer'),
+                    hairdresser: this.$t('fraction.hairdresser'),
+                    electronics: this.$t('fraction.electronics'),
+                    furniture: this.$t('fraction.furniture'),
                     waste_disposal: this.$t('fraction.wasteDisposal'),
 
                 },
@@ -118,11 +119,11 @@
                 let ovData = osmtogeojson(data);
                 this.layer = L.geoJson(ovData, {
                     style: function (feature) {
-                        var color = feature.properties.amenity === 'recycling'
+                        var color = feature.properties.amenity === 'shop'
                             ? '#ff0000' // RED - Show nodes with no factions in red (materials not specified)
-                            : '#8D6E63'; // BROWN
+                            : '#00DBFF'; // BROWN
                         for (let key in feature.properties) {
-                          if(key.startsWith("recycling:")){ // recycling:* - display in green
+                          if(key.startsWith("shop:")){ // recycling:* - display in green
                             color = '#2E7D32'; // GREEN
                           }
                         }
@@ -358,7 +359,7 @@
                 }
                 else {
                     for (let key in this.labels) {
-                        if(geoJsonProps.hasOwnProperty('recycling:'+key) && geoJsonProps['recycling:'+key] === 'yes') {
+                        if(geoJsonProps.hasOwnProperty('shop:'+key) && geoJsonProps['shop:'+key] === 'yes') {
                             nodeTypes.push(key);
                         }
                     }
