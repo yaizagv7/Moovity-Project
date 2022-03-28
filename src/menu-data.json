@@ -1,0 +1,51 @@
+[
+	{
+		"id": 1,
+		"name": "Tiendas",
+		"icon": "icon_shops",
+		"children": [{
+						"name": "Peluquerias",
+						"icon": "icon_hairdresser",
+						"tags": [
+							["shop","hairdresser"]
+						]
+					}, 
+					{
+						"name": "Gasolineras",
+						"icon": "icon_fuel",
+						"tags": [
+							["amenity","fuel"]
+						]
+					}],
+		"isOpen" :false
+	},
+	{
+		"id": 2,
+		"name": "Restauracion",
+		"icon": "icon_rest",
+		"children": [{
+				"name": "Bares",
+				"icon": "icon_bar",
+				"tags": [
+					["amenity","bar"]
+				]
+			}, 
+			{
+				"name": "Restaurantes chinos",
+				"icon": "icon_chinese",
+				"tags": [
+					["amenity","restaurant"],
+					["cuisine", "chinese"]
+				]
+			}, 
+			{
+				"name": "Restaurantes locales",
+				"icon": "icon_regional",
+				"tags": [
+					["amenity","restaurant"],
+					["cuisine", "regional"]
+				]
+			}],
+		"isOpen":false
+	}
+] 

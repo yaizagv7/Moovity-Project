@@ -43,7 +43,9 @@
     "map": "Mapa",
     "user": "Usuario",
     "about": "Acerca de",
-    "add": "Añadir"
+    "add": "Añadir",
+    "map_view":"Vista mapa",
+    "my_location": "Show Your Location"
   },
   "button": {
     "toMap": "Ir al mapa",

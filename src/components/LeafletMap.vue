@@ -8,10 +8,7 @@
                 <div class="layer_btn" :class="{active: activeLayer === 'Mapbox sat'}" @click="setLayer('Mapbox sat')">Mapbox sat</div>
                 <div class="layer_btn layer_btn_last" :class="{active: activeLayer === 'ESRI sat'}" @click="setLayer('ESRI sat')">ESRI sat</div>
             </div>
-            <router-link class="orm_control orm_info" to="/about" :title="$t('menu.about')"></router-link>
-            <div class="orm_control orm_layers popup_activator" :title="$t('menu.map_view')" :class="{control_active: layersPopup}"  @click="layersPopup = !layersPopup"></div>
-            <router-link class="orm_control orm_map_add_white add_green" to="/map/add" :title="$t('menu.add')"></router-link>
-            
+            <div class="orm_control orm_layers popup_activator" :title="$t('menu.map_view')" :class="{control_active: layersPopup}"  @click="layersPopup = !layersPopup"></div>     
         </div>
 
         <div class="control_bottom">
@@ -242,13 +239,6 @@
     .orm_map_add {
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='36' height='36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='15.46' y='8.45' width='5.14' height='19.47' rx='.84' fill='%23248A00'/%3E%3Crect x='8.29' y='20.76' width='5.14' height='19.47' rx='.84' transform='rotate(-90 8.3 20.76)' fill='%23248A00'/%3E%3C/svg%3E");
     }
-    .add_mode .orm_map_add_white,
-    .add_mode .orm_map_add {
-        display:none;
-    }
-    .add_mode .control_top {
-        top:110px;
-    }
     .control_top {
         position: absolute;
         top:25px;
@@ -280,9 +270,6 @@
     }
     .zoom_btn:hover {
         background:#eee;
-    }
-    .add_mode .orm_position {
-        /*bottom:80px;*/
     }
     .orm_position {
             top:140px;

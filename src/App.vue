@@ -9,14 +9,6 @@
                 <span>{{ $t('menu.map') }}</span>
                 <v-icon>map</v-icon>
             </v-btn>
-            <v-btn :to="{path: '/login'}" dark>
-                <span>{{ $t('menu.user') }}</span>
-                <v-icon>account_circle</v-icon>
-            </v-btn>
-            <v-btn :to="{path: '/about'}" dark>
-                <span>{{ $t('menu.about') }}</span>
-                <v-icon>info</v-icon>
-            </v-btn>
             <v-btn :to="{path: '/map/add'}" dark>
                 <span>{{ $t('menu.add') }}</span>
                 <v-icon>add_circle</v-icon>
@@ -35,10 +27,6 @@
             }
         },
         methods: {
-            processParams: function (route) {
-                if(route.name === 'about') {
-                }
-            },
             fixHeight: function () {
                 let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
                 let wrapEl = document.getElementsByClassName('application--wrap')[0];
@@ -46,16 +34,11 @@
             }
         },
         created() {
-            this.processParams(this.$route);
+           // this.processParams(this.$route);
         },
         mounted() {
             this.fixHeight();
             window.addEventListener('resize', this.fixHeight);
-        },
-        watch: {
-            '$route' (to, from) {
-                this.processParams(to);
-            }
         }
     }
 </script>

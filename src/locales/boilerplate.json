@@ -21,31 +21,9 @@
     "signUp": "",
     "devBy": ""
   },
-  "fraction": {
-    "wasteDisposal": "",
-    "anyRecycling": "",
-    "paper": "",
-    "cans": "",
-    "glass": "",
-    "glass_bottles": "",
-    "batteries": "",
-    "plastic": "",
-    "plastic_bottles": "",
-    "plastic_packaging": "",
-    "plastic_bags": "",
-    "hazardous_waste": "",
-    "clothes": "",
-    "low_energy_bulbs": "",
-    "scrap_metal": "",
-    "tyres": "",
-    "car_batteries": "",
-    "engine_oil": ""
-  },
   "menu": {
     "map": "",
-    "user": "",
-    "about": "",
-    "add": ""
+    "user": ""
   },
   "button": {
     "toMap": "",

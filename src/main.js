@@ -42,7 +42,7 @@ Vue.directive('click-outside', {
     },
 });
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = true;
 
 import 'vuetify/dist/vuetify.min.css'
 

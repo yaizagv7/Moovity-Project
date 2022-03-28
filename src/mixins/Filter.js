@@ -5,35 +5,19 @@ export default class Filter {
             Object.assign(this, JSON.parse(stored));
         }
         else {
-            this.assignRecycling();
-            this.waste_disposal = false;
-            this.recycling = true;
+            this.assignFilters();
         }
     }
-    assignRecycling() {
-        this.plastic = false;
-        this.paper = false;
-        this.cans = false;
-        this.glass = false;
-        this.glass_bottles = false;
-        this.plastic_bags = false;
-        this.clothes = false;
-        this.batteries = false;
-        this.low_energy_bulbs = false;
-        this.plastic_bottles = false;
-        this.hazardous_waste = false;
-        this.scrap_metal = false;
-        this.engine_oil = false;
-        this.car_batteries = false;
-        this.tyres = false;
+    assignFilters() {
+        this.hairdresser = false;
+        this.fuel = false;
+        this.bar = false;
     }
     invert(key) {
+        //MODO INTERRUPTOR
         this[key] = !this[key];
-        if(this[key] && key !== 'waste_disposal' && key !== 'recycling') {
-            this.recycling = false;
-        }
-        if(this[key] && key === 'recycling') {
-            this.assignRecycling();
+        if(this[key] && key === 'shop') {
+            this.assignFilters();
         }
         localStorage.setItem('filter', JSON.stringify(this));
     }
@@ -46,20 +30,29 @@ export default class Filter {
         return false;
     }
     fit(geoJsonProps) {
-        if(geoJsonProps.hasOwnProperty('amenity') && geoJsonProps['amenity'] === 'waste_disposal') {
-            return this.waste_disposal;
-        }
-        if(geoJsonProps.hasOwnProperty('amenity') && geoJsonProps['amenity'] === 'recycling' && this.recycling) {
-            return true;
-        }
-        for (let key in this) {
-            if(!this.hasOwnProperty(key) || !this[key] || key === 'waste_disposal' || key === 'recycling') {
+        let filter = this;       
+        let geo_amenity = geoJsonProps.amenity;
+        let geo_shop = geoJsonProps.shop;
+        console.log("fit geojson");
+        console.log(geoJsonProps);
+        // console.log("asign shops");
+        // console.log(this.assignShops);
+        console.log("this");
+        console.log(filter);
+        //console.log(typeof(filter));
+        for (let key in filter) {
+            //console.log(key);
+            //console.log(valueOf(key));
+            if(!filter.hasOwnProperty(key) || !this[key]) {
+                //console.log("no tiene la propiedad:"+ key);
                 continue;
             }
-            if(geoJsonProps.hasOwnProperty('recycling:'+key) && geoJsonProps['recycling:'+key] === 'yes') {
+            if(filter.hasOwnProperty(key) && tipodetienda === key) {
+                //console.log(geoJsonProps.shop + "="+ key);
                 return true;
             }
         }
         return false;
+    
     }
 }

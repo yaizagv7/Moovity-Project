@@ -44,12 +44,6 @@
                     eventLabel: 'auth_ok',
                     eventValue: 1
                 });
-                this.auth.bootstrapToken(token, function(err, oauth) {
-                    router.replace({name: 'about'});
-                });
-            }
-            else {
-                router.replace({name: 'about'});
             }
         }
     }
