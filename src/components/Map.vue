@@ -132,7 +132,7 @@ export default {
       this.layer = L.geoJson(ovData, {
         style: function (feature) {
           //switch case para mas opciones
-          var color = "#00DBFF"; // blue
+          var color = "#80B4FF"; // blue
           return {
             opacity: 1,
             fillOpacity: 1,

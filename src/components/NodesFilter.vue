@@ -12,9 +12,9 @@
           >
             <div class="menu1" :class="item.icon">{{ item.name }}</div>
             <ul v-if="item.isOpen" class="menu2">
-              <li v-for="children in item.children" :key="children.name" @click.prevent="">
+              <li v-for="children in item.children" :key="children.name">
                 <div
-                  @click.prevent="$emit('launch-query', children.tags)"
+                  @click.stop.prevent="$emit('launch-query', children.tags)"
                   :class="['map_filter', children.icon]"
                 >
                   {{ children.name.toUpperCase() }}
@@ -26,7 +26,8 @@
       </div>
     </div>
     </transition>
-    <button @click="openCloseSideBar">&laquo; &raquo;</button>
+    <button v-if="sideBar" @click="openCloseSideBar">&laquo; &raquo;</button>
+    <button v-else class="toOpen"  @click="openCloseSideBar">&laquo; &raquo;</button>
   </div>
 </template>
 
@@ -64,17 +65,20 @@ export default {
     transform: translateX(-300px);
 }
 button {
-    background-color: #dbdbdb !important;
+    background-color: #79adf1 !important;
   position: absolute;
   border: none;
   height: 40px;
   width: 40px;
   border-radius: 50% !important;
   box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.3);
-  left: 290px;
+  left: 270px;
   top: 15px;
-  transform: translateX(-50%);
   cursor: pointer;
+  transition: left 2s;
+}
+.toOpen{
+    left: 30px;
 }
 .map_filters .brand {
   /*background-color: #9be3ff;*/
@@ -83,6 +87,7 @@ button {
   text-align: center;
   font-size: 24px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-shadow: black 0.1em 0.1em 0.2em;
   color: white;
   background: linear-gradient(to bottom, #4698f7 75%, rgb(250, 250, 250) 100%);
 }
@@ -106,11 +111,11 @@ button {
     right: 20px;
   }
 }
-@media screen and (min-width: 700px) {
-}
+
 @media screen and (min-width: 700px) {
   .map_filter:hover {
-    background-color: rgb(254, 255, 215);
+    background-color: rgb(233, 233, 233);
+    box-shadow: 0px 1px 4px 1px rgb(0, 0, 0);
     font-weight: bold;
   }
 }
@@ -126,15 +131,7 @@ button {
   left: 5px;
   /*box-shadow: #d5afff 0 -4px 0 0 inset;*/
 }
-.ico_waste_disposal.filter_active:before {
-  background: #8d6e63 !important;
-}
-.map_filter.ico_waste_disposal:hover:before {
-  border-color: #8d6e63;
-}
-.map_filter.ico_dots:before {
-  display: none !important;
-}
+
 li {
   list-style: none;
 }
