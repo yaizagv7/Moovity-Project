@@ -34,6 +34,8 @@
 <script>
 import menu_data from "../menu-data.json";
 
+const menu = menu_data.tojoson();
+
 export default {
   name: "nodes-filter",
   props: ["filter"],
@@ -106,9 +108,16 @@ button {
   border-radius: 10px;
   box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.3);
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 500px) {
   .map_filters {
-    right: 20px;
+    width: 240px;
+  }
+  button {
+    left: 230px;
+  }
+  .map_filter {
+    font-size: 11px !important;
+    justify-content: flex-start !important;
   }
 }
 
